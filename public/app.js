@@ -18,9 +18,7 @@
   const dbRefObject = firebase.database().ref().child('object');
 
   //Sync object changes
-  console.log("not woekin");
   dbRefObject.on('value', snap => console.log(snap.val()));
-  console.log('do you ');
 
   var playersRef = firebase.database().ref("players/");
 
