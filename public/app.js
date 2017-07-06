@@ -13,14 +13,21 @@
 
   //Get elements
   const preObject = document.getElementById('object');
+  const ulList = document.getElementById('list');
 
   //Create references
   const dbRefObject = firebase.database().ref().child('object');
+  const dbRefList = dbRefObject.child('hobbies');
 
   //Sync object changes
-  dbRefObject.on('value', snap => console.log(snap.val()));
+  dbRefObject.on('value', snap => {
+    preObject.innerText = JSON.stringify(snap.val(), null, 3);
+  });
 
-  var playersRef = firebase.database().ref("players/");
+  //Sync list changes
+  dbRefList.on('child_added', snap => console.log(snap.val()))
+
+  /*var playersRef = firebase.database().ref("players/");
 
 playersRef.set({
    John: {
@@ -32,6 +39,6 @@ playersRef.set({
       number: 2,
       age: 20
    }
-});
+});*/
 	
 }());
